@@ -16,5 +16,5 @@ docker-compose up --build
 3. After you have stopped the project w/ Ctrl + c, run:
 docker-compose down --rmi all
 
-4. In order to all images and containers in one bash command:
+4. In order to delete all images + containers in 1 bash command:
 docker system prune -a
