@@ -1,0 +1,49 @@
+version: '3.7'
+services:
+  db:
+    image: postgres
+    restart: always
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}     # referencing environment variables
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    networks:
+      - endence
+
+  backend:
+    env_file:
+      - .env
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile.backend
+    volumes:
+      - ./backend:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 3000:3000
+      - 5555:5555
+    depends_on:
+      - db
+    networks:
+      - endence
+  
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile.frontend
+    volumes:
+      - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 4000:3000
+    depends_on:
+      - backend
+    networks:
+      - endence
+
+networks:
+  endence:
+    driver: bridge
+    

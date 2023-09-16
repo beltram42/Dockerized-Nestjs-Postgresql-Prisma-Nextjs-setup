@@ -1,0 +1,47 @@
+FROM node:16.20.2 AS deps
+# To make sure path exists, if we don't add this mkdir, the following errno -2
+# [Error: ENOENT: no such file or directory, open '/usr/src/app/.next/BUILD_ID']
+# will happen
+RUN mkdir -p /usr/src/app
+
+WORKDIR /usr/src/app
+COPY package.json package-lock.json ./
+RUN echo "Step 1: Installing production dependencies"
+RUN npm install --save-dev
+
+# Step 1: Installing production dependencies
+# This is a comment or log statement to indicate the current step
+
+FROM node:16.20.2 AS builder
+WORKDIR /usr/src/app
+COPY --from=deps /usr/src/app/node_modules ./node_modules
+COPY . .
+ENV NEXT_TELEMETRY_DISABLED 1
+RUN echo "Step 2: Building the application"
+RUN npm run build
+
+# Step 2: Building the application
+# This is a comment or log statement to indicate the current step
+
+FROM node:16.20.2 AS runner
+WORKDIR /usr/src/app
+RUN echo "Step 3: Setting up user and permissions"
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+# Step 3: Setting up user and permissions
+# This is a comment or log statement to indicate the current step
+
+RUN echo "Step 4: Copying build artifacts and package.json"
+COPY --from=builder --chown=nextjs:nodejs /usr/src/app/.next ./.next
+COPY --from=builder /usr/src/app/node_modules ./node_modules
+COPY --from=builder /usr/src/app/package.json ./package.json
+
+# Step 4: Copying build artifacts and package.json
+# This is a comment or log statement to indicate the current step
+
+# RUN sleep 8  # Optional sleep to slow down the build process for observation
+
+EXPOSE 4000
+
+CMD [ "npm", "run", "dev" ]

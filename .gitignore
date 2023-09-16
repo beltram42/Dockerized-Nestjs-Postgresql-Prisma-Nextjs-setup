@@ -1,0 +1,8 @@
+# General
+.env
+backend/node_modules
+frontend/.next
+frontend/node_modules
+
+# OS
+.DS_Store

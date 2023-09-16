@@ -1,0 +1,15 @@
+{
+	"name": "ft_transcendence",
+	"version": "1.0.0",
+	"description": "Dockerized environment with a database, a back-end, and a front-end application.",
+	"scripts": {
+	  "build:back": "docker-compose build nestjs-app",
+	  "build:front": "docker-compose build nextjs-app",
+	  "start:db": "docker-compose up postgres-db",
+	  "start:back": "docker-compose up nestjs-app --renew-anon-volumes",
+	  "start:front": "docker-compose up nextjs-app --renew-anon-volumes",
+	  "clean": "docker-compose down -v"
+	},
+	"author": "",
+	"license": "ISC"
+  }
