@@ -3,7 +3,7 @@
 Hi, here is a dockerized very basic fullstack TS setup I have done for one of my projects at 42 Paris, with:
 - NestJS + PostgreSQL + Prisma,
 - NextJS,
-separated in three services, linked to each other by a single network; db credentials are set in a .env.
+separated in three services, linked to each other by a single network.
 
 As evoked, this is a basic setup but it performs smoothly.
 
