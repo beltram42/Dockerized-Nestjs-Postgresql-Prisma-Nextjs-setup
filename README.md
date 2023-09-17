@@ -27,7 +27,7 @@ docker-compose up --build
 
 
 
-# To stop + cleanup setup's containers/images:
+# To stop + cleanup containers/images:
 
 - after you have stopped the project w/ Ctrl + c, run:
 docker-compose down --rmi all
