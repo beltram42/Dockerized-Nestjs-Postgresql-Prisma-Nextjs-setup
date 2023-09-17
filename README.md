@@ -9,7 +9,7 @@ Here I resolved a few commonly met issues, such as:
 - how to set the project to have its dependencies -- typically node_modules -- build or rebuild and run as images only,
 - which is a piece of cake for Nest, but requires more efforts to achieve with Next, as mentionned in a few posts about this topic out there -- with no definitive answers.
 
-In some cases, Next is not able to rebuild completely: it doesn't find its rebuilt image, because it didn't create the path to it... so you will need have to priorly create the path yourself in the Dockerfile.
+In some cases, Next is not able to rebuild completely: it doesn't find its rebuilt image, because it didn't create the path to it... so you need priorly to create the path yourself in the Dockerfile.
 
 
 
