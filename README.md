@@ -4,9 +4,7 @@ Hi, here is a dockerized fullstack TS setup I have done for one of my projects a
 - NestJS + PostgreSQL + Prisma,
 - NextJS,
 
-separated in three services, linked to each other by a single network.
-
-It performs smoothly.
+separated in three services, linked to each other by a single network. It performs smoothly.
 
 Here I resolved a few commonly met issues, such as:
 - how to set the project to have its dependencies -- typically node_modules -- build or rebuild and run as images only,
