@@ -15,22 +15,22 @@ In some cases, Next is not able to rebuild completely: it doesn't find its rebui
 
 # Running the setup:
 
-1. Create the .env, at project's root (pls change credentials):
+1. create the .env, at project's root (pls change credentials):
 POSTGRES_HOST=db
 POSTGRES_USER=ptransc
 POSTGRES_PASSWORD=endence
 POSTGRES_DB=mydatabase
 DATABASE_URL="postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}"
 
-2. Then run:
+2. then run:
 docker-compose up --build
 
 
 
 # To stop + cleanup setup's containers/images:
 
-- After you have stopped the project w/ Ctrl + c, run:
+- after you have stopped the project w/ Ctrl + c, run:
 docker-compose down --rmi all
 
-- In order to delete all images + containers in 1 bash command:
+- in order to delete all images + containers in 1 bash command:
 docker system prune -a
