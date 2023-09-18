@@ -1,6 +1,6 @@
 # Dockerized-Nestjs-Postgresql-Prisma-Nextjs-setup
 
-Hi, here is a dockerized fullstack TS setup I have done for one of my projects at 42 Paris, with:
+Hi, here is a dockerized bare-bones fullstack TS setup I have done for one of my projects at 42 Paris, with:
 - NestJS + PostgreSQL + Prisma,
 - NextJS,
 
