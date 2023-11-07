@@ -1,10 +1,19 @@
 FROM node:16.20.2
+
+RUN apt-get update && apt-get install -y postgresql-client
+
 WORKDIR /usr/src/app
+
 COPY package*.json ./
-#RUN npm install : une fois installé une fois, remettre en commentaire
-RUN npm install 
-COPY . .
+
+RUN npm install
+
+#COPY . .
+
 COPY entry.sh entry.sh
+
 RUN chmod +x entry.sh
+
 EXPOSE 3000
+
 CMD [ "sh", "entry.sh"]
