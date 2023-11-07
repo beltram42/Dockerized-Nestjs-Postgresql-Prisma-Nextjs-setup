@@ -18,7 +18,7 @@ In some cases, Next is not able to rebuild completely: it doesn't find its rebui
 
 1. create the .env, in backend directory (pls change credentials):
 POSTGRES_HOST=db
-POSTGRES_USER=ptransc
+POSTGRES_USER=transc
 POSTGRES_PASSWORD=endence
 POSTGRES_DB=mydatabase
 DATABASE_URL="postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}"
