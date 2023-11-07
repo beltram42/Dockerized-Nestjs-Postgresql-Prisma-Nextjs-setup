@@ -12,9 +12,10 @@ generator client {
 
 model User {
   id           Int          @id @default(autoincrement())
-  avatar       String
   login        String       @unique
   username     String       @unique
+  password	   String
   email        String       @unique
+  avatar       String
   isOL         Boolean
 }
