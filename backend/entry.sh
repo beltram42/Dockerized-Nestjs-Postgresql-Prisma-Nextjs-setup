@@ -1,5 +1,12 @@
-sleep 2 #very ugly haha
-# npm i
+set -e
+until pg_isready -h "${POSTGRES_HOST}" -p 5432 -U "${POSTGRES_USER}"; do
+  echo "$(date) - waiting for db to start"
+  sleep 1
+done
+exec "$@"
+# npx npx prisma migrate dev --name init
+npx prisma db push
 npx prisma generate
-npx npx prisma migrate dev --name init 
-npm run start:dev & (sleep 3 && npx prisma studio)
+npx prisma db seed
+(npx prisma studio&) 
+npm run start:dev
