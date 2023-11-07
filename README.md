@@ -16,7 +16,7 @@ In some cases, Next is not able to rebuild completely: it doesn't find its rebui
 
 # Running the setup:
 
-1. create the .env, at project's root (pls change credentials):
+1. create the .env, in backend directory (pls change credentials):
 POSTGRES_HOST=db
 POSTGRES_USER=ptransc
 POSTGRES_PASSWORD=endence
@@ -34,4 +34,4 @@ docker-compose up --build
 docker-compose down --rmi all
 
 - in order to delete all images + containers in 1 bash command:
-docker system prune -a
+docker system prune -af; docker volume prune -f
