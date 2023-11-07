@@ -1,35 +1,46 @@
 version: '3.7'
+
+x-service-base: &service-base
+  init: true
+  restart: unless-stopped
+  environment:
+    TZ: "Europe/Paris"
+
+x-volume-base: &volume-base
+  driver: local
+
 services:
   db:
-    image: postgres
-    restart: always
+    <<: *service-base
+    image: postgres:latest
+    container_name: db
     env_file:
-      - .env
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER}     # referencing environment variables
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
+      - backend/.env
     networks:
       - endence
 
   backend:
-    env_file:
-      - .env
+    <<: *service-base
+    depends_on:
+      - db
+    container_name: backend
     build: 
       context: ./backend
       dockerfile: Dockerfile.backend
+    env_file:
+      - backend/.env
     volumes:
       - ./backend:/usr/src/app
       - /usr/src/app/node_modules
     ports:
       - 3000:3000
       - 5555:5555
-    depends_on:
-      - db
     networks:
       - endence
   
   frontend:
+    <<: *service-base
+    container_name: frontend
     build: 
       context: ./frontend
       dockerfile: Dockerfile.frontend
@@ -43,7 +54,16 @@ services:
     networks:
       - endence
 
+  # adminer:
+  #   <<: *service-base
+  #   image: adminer
+  #   container_name: adminer
+  #   restart: always
+  #   ports:
+  #     - 8080:8080
+  #   networks:
+  #     - endence
+
 networks:
   endence:
     driver: bridge
-    
